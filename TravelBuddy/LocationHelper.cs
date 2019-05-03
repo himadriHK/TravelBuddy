@@ -14,5 +14,6 @@ namespace TravelBuddy
 {
     class LocationHelper
     {
+        //test
     }
 }
