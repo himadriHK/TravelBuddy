@@ -54,6 +54,10 @@
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GoogleApi, Version=3.8.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Includes\GoogleApi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -97,6 +101,12 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>10.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Portable.BouncyCastle">
+      <Version>1.8.1.3</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.GooglePlayServices.Location">
       <Version>60.1142.1</Version>
