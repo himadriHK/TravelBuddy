@@ -18,6 +18,8 @@ using Android.Widget;
 using GoogleApi;
 using GoogleApi.Entities.Places.Search.NearBy.Request;
 using GoogleApi.Entities.Places.Search.NearBy.Response;
+using GoogleApi.Entities.Places.QueryAutoComplete.Request;
+using GoogleApi.Entities.Places.QueryAutoComplete.Response;
 
 namespace TravelBuddy
 {
@@ -95,13 +97,38 @@ namespace TravelBuddy
                 if (response2 != null && response2.Results.Any())
                 {
                     foreach (NearByResult nearByResult in response2.Results)
-                        et.Text += nearByResult.Name + "\n";
+                        et.Text += nearByResult.Name +"  Lat:"+ nearByResult.Geometry.Location.Latitude +"  Long:"+ nearByResult.Geometry.Location.Longitude + "\n";
                 }
             }
             else
             {
                 // No locations to work with.
             }
+
+        }
+
+        public void getLocationByText(string locationText)
+        {
+            var request = new PlacesQueryAutoCompleteRequest
+            {
+                Key = "AIzaSyBA58FFbrOgnkHm5k3-i1cF2lJOhfouQ1I",//this.ApiKey,
+                Input = locationText //"jagtvej 2200"
+            };
+
+            PlacesQueryAutoCompleteResponse response;
+            response = GooglePlaces.QueryAutoComplete.QueryAsync(request).Result;
+
+            string res = "";
+            if (response != null)
+                //need to place logic to deserialise and get the 
+                res += response.RawJson;
+            else
+                res = "No Place Found";
+
+            //EditText et = screenActivity.FindViewById<EditText>(Resource.Id.editText1);
+            //et.Text = res;
+            TextView tv = screenActivity.FindViewById<TextView>(Resource.Id.textView1);
+            tv.Text = res;
         }
 
 
