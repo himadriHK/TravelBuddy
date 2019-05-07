@@ -15,20 +15,20 @@ using Android.Support.V4.App;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using GoogleApi;
+using GoogleApi.Entities.Places.Search.NearBy.Request;
+using GoogleApi.Entities.Places.Search.NearBy.Response;
 
 namespace TravelBuddy
 {
     public class LocationHelper : LocationCallback
     {
 	    public  Location currentLocation;
+        private Activity screenActivity;
 	    public  void GetGpsAccess(Activity activity, View view)
 	    {
 		    if (ActivityCompat.ShouldShowRequestPermissionRationale(activity, Manifest.Permission.AccessCoarseLocation) || ActivityCompat.ShouldShowRequestPermissionRationale(activity, Manifest.Permission.AccessFineLocation))
 		    {
-			    // Provide an additional rationale to the user if the permission was not granted
-			    // and the user would benefit from additional context for the use of the permission.
-			    // For example if the user has previously denied the permission.
-			    //Log.Info(TAG, "Displaying camera permission rationale to provide additional context.");
 
 			    var requiredPermissions = new String[] { Manifest.Permission.AccessCoarseLocation,Manifest.Permission.AccessFineLocation };
 			    Snackbar.Make(view,
@@ -53,10 +53,12 @@ namespace TravelBuddy
 			await getLastLocationFromDevice(fusedLocationProvider);
 			LocationRequest locationRequest = new LocationRequest()
 				.SetPriority(LocationRequest.PriorityHighAccuracy)
-				.SetInterval(60 * 1000 * 5)
-				.SetFastestInterval(60 * 1000 * 2);
+				.SetInterval(5000)
+				.SetFastestInterval(5000);
 
-			await fusedLocationProvider.RequestLocationUpdatesAsync(locationRequest, this);
+            await fusedLocationProvider.RequestLocationUpdatesAsync(locationRequest, this);
+
+            screenActivity = activity;
 		}
 
 		 async Task getLastLocationFromDevice(FusedLocationProviderClient fusedLocationProviderClient)
@@ -71,17 +73,37 @@ namespace TravelBuddy
 
 		}
 
-		 public override void OnLocationResult(LocationResult result)
-		 {
-			 if (result.Locations.Any())
-			 {
-				  currentLocation = result.Locations.First();
-				 //Log.Debug("Sample", "The latitude is :" + location.Latitude);
-			 }
-			 else
-			 {
-				 // No locations to work with.
-			 }
-		 }
-	}
+        public override void OnLocationResult(LocationResult result)
+        {
+            if (result.Locations.Any())
+            {
+                currentLocation = result.Locations.First();
+                string key = "AIzaSyBA58FFbrOgnkHm5k3-i1cF2lJOhfouQ1I";
+
+                var request2 = new PlacesNearBySearchRequest
+                {
+                    Key = key,
+                    Location = new GoogleApi.Entities.Common.Location() { Latitude = currentLocation.Latitude, Longitude = currentLocation.Longitude },
+                    Radius = 500
+                };
+
+                var response2 = GooglePlaces.NearBySearch.Query(request2);
+                TextView tv = screenActivity.FindViewById<TextView>(Resource.Id.textView1);
+                EditText et = screenActivity.FindViewById<EditText>(Resource.Id.editText1);
+                tv.Text = string.Format("Location: Lat:{0} Long:{1}", currentLocation.Latitude, currentLocation.Longitude);
+                et.Text = string.Empty;
+                if (response2 != null && response2.Results.Any())
+                {
+                    foreach (NearByResult nearByResult in response2.Results)
+                        et.Text += nearByResult.Name + "\n";
+                }
+            }
+            else
+            {
+                // No locations to work with.
+            }
+        }
+
+
+    }
 }

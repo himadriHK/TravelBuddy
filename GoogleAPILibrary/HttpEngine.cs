@@ -37,8 +37,8 @@ namespace GoogleApi
 					var httpClientHandler = new HttpClientHandler
                     {
                         AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
-								UseProxy = true,
-								Proxy = new WebProxy($"{proxyHost}:{proxyPort}",true,null,new NetworkCredential("e5555304","Apr@2k@19#Ambit"))
+								//UseProxy = true,
+								//Proxy = new WebProxy($"{proxyHost}:{proxyPort}",true,null,new NetworkCredential("e5555304","Apr@2k@19#Ambit"))
 								
                     };
 
