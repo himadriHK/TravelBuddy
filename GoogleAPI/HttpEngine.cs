@@ -32,7 +32,9 @@ namespace GoogleApi
                 {
                     var httpClientHandler = new HttpClientHandler
                     {
-                        AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+                        AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
+								UseProxy = true
+								
                     };
 
                     HttpEngine.httpClient = new HttpClient(httpClientHandler)

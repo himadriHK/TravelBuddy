@@ -40,6 +40,7 @@
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidSupportedAbis />
     <LangVersion>7.1</LangVersion>
+    <AndroidTlsProvider>btls</AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -114,9 +115,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GoogleAPI\GoogleAPI.csproj">
-      <Project>{9ba92f5e-dc21-4e64-80c8-764cbe0db358}</Project>
-      <Name>GoogleAPI</Name>
+    <ProjectReference Include="..\GoogleAPILibrary\GoogleAPILibrary.csproj">
+      <Project>{905eb077-63ee-49b0-9764-678d5f56e01c}</Project>
+      <Name>GoogleAPILibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

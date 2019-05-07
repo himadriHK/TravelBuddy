@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{905EB077-63EE-49B0-9764-678D5F56E01C}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{9ef11e43-1701-4396-8835-8392d57abb70}</TemplateGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GoogleAPILibrary</RootNamespace>
+    <AssemblyName>GoogleAPILibrary</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\BaseRequest.cs" />
+    <Compile Include="Entities\BaseResponse.cs" />
+    <Compile Include="Entities\BaseResponseStream.cs" />
+    <Compile Include="Entities\Common\AddressComponent.cs" />
+    <Compile Include="Entities\Common\Converters\BooleanJsonConverter.cs" />
+    <Compile Include="Entities\Common\Converters\StringEnumListConverter.cs" />
+    <Compile Include="Entities\Common\Converters\StringEnumOrDefaultConverter.cs" />
+    <Compile Include="Entities\Common\Enums\AddressComponentType.cs" />
+    <Compile Include="Entities\Common\Enums\Component.cs" />
+    <Compile Include="Entities\Common\Enums\Extensions\LanguageExtension.cs" />
+    <Compile Include="Entities\Common\Enums\Language.cs" />
+    <Compile Include="Entities\Common\Enums\PlaceLocationType.cs" />
+    <Compile Include="Entities\Common\Enums\Status.cs" />
+    <Compile Include="Entities\Common\Extensions\DateTimeExtension.cs" />
+    <Compile Include="Entities\Common\Extensions\EnumExtension.cs" />
+    <Compile Include="Entities\Common\Extensions\ListExtension.cs" />
+    <Compile Include="Entities\Common\Geometry.cs" />
+    <Compile Include="Entities\Common\Location.cs" />
+    <Compile Include="Entities\Common\PlusCode.cs" />
+    <Compile Include="Entities\Common\ViewPort.cs" />
+    <Compile Include="Entities\Interfaces\IRequest.cs" />
+    <Compile Include="Entities\Interfaces\IRequestJson.cs" />
+    <Compile Include="Entities\Interfaces\IRequestQueryString.cs" />
+    <Compile Include="Entities\Interfaces\IResponse.cs" />
+    <Compile Include="Entities\Maps\BaseMapsChannelRequest.cs" />
+    <Compile Include="Entities\Maps\BaseMapsRequest.cs" />
+    <Compile Include="Entities\Maps\Common\Distance.cs" />
+    <Compile Include="Entities\Maps\Common\Duration.cs" />
+    <Compile Include="Entities\Maps\Common\Enums\AvoidWay.cs" />
+    <Compile Include="Entities\Maps\Common\Enums\TrafficModel.cs" />
+    <Compile Include="Entities\Maps\Common\Enums\TransitMode.cs" />
+    <Compile Include="Entities\Maps\Common\Enums\TransitRoutingPreference.cs" />
+    <Compile Include="Entities\Maps\Common\Enums\TravelMode.cs" />
+    <Compile Include="Entities\Maps\Common\Enums\Units.cs" />
+    <Compile Include="Entities\Maps\Common\Error.cs" />
+    <Compile Include="Entities\Maps\Common\ErrorDetail.cs" />
+    <Compile Include="Entities\Maps\Common\Fare.cs" />
+    <Compile Include="Entities\Maps\Common\MapSize.cs" />
+    <Compile Include="Entities\Maps\Directions\Request\DirectionsRequest.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\Bounds.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\DirectionsResponse.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\Enums\ManeuverAction.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\Enums\VehicleType.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\Leg.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\Line.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\OverviewPolyline.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\Route.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\Step.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\Stop.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\TransitAgency.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\TransitDetails.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\Vehicle.cs" />
+    <Compile Include="Entities\Maps\Directions\Response\WayPoint.cs" />
+    <Compile Include="Entities\Maps\DistanceMatrix\Request\DistanceMatrixRequest.cs" />
+    <Compile Include="Entities\Maps\DistanceMatrix\Response\DistanceMatrixResponse.cs" />
+    <Compile Include="Entities\Maps\DistanceMatrix\Response\Element.cs" />
+    <Compile Include="Entities\Maps\DistanceMatrix\Response\Row.cs" />
+    <Compile Include="Entities\Maps\Elevation\Request\ElevationRequest.cs" />
+    <Compile Include="Entities\Maps\Elevation\Response\ElevationResponse.cs" />
+    <Compile Include="Entities\Maps\Elevation\Response\Result.cs" />
+    <Compile Include="Entities\Maps\Geocoding\Address\Request\AddressGeocodeRequest.cs" />
+    <Compile Include="Entities\Maps\Geocoding\BaseGeocodeRequest.cs" />
+    <Compile Include="Entities\Maps\Geocoding\Common\Enums\GeometryLocationType.cs" />
+    <Compile Include="Entities\Maps\Geocoding\Common\Result.cs" />
+    <Compile Include="Entities\Maps\Geocoding\GeocodeResponse.cs" />
+    <Compile Include="Entities\Maps\Geocoding\Location\Request\LocationGeocodeRequest.cs" />
+    <Compile Include="Entities\Maps\Geocoding\Place\Request\PlaceGeocodeRequest.cs" />
+    <Compile Include="Entities\Maps\Geocoding\PlusCode\Request\PlusCodeGeocodeRequest.cs" />
+    <Compile Include="Entities\Maps\Geocoding\PlusCode\Response\Locality.cs" />
+    <Compile Include="Entities\Maps\Geocoding\PlusCode\Response\PlusCode.cs" />
+    <Compile Include="Entities\Maps\Geocoding\PlusCode\Response\PlusCodeGeocodeResponse.cs" />
+    <Compile Include="Entities\Maps\Geolocation\Request\CellTower.cs" />
+    <Compile Include="Entities\Maps\Geolocation\Request\Enums\RadioType.cs" />
+    <Compile Include="Entities\Maps\Geolocation\Request\GeolocationRequest.cs" />
+    <Compile Include="Entities\Maps\Geolocation\Request\WifiAccessPoint.cs" />
+    <Compile Include="Entities\Maps\Geolocation\Response\GeolocationResponse.cs" />
+    <Compile Include="Entities\Maps\Roads\BaseRoadsRequest.cs" />
+    <Compile Include="Entities\Maps\Roads\BaseRoadsResponse.cs" />
+    <Compile Include="Entities\Maps\Roads\Common\Enums\Units.cs" />
+    <Compile Include="Entities\Maps\Roads\Common\Error.cs" />
+    <Compile Include="Entities\Maps\Roads\Common\ErrorDetail.cs" />
+    <Compile Include="Entities\Maps\Roads\Common\Link.cs" />
+    <Compile Include="Entities\Maps\Roads\Common\Location.cs" />
+    <Compile Include="Entities\Maps\Roads\Common\SnappedPoint.cs" />
+    <Compile Include="Entities\Maps\Roads\NearestRoads\Request\NearestRoadsRequest.cs" />
+    <Compile Include="Entities\Maps\Roads\NearestRoads\Response\NearestRoadsResponse.cs" />
+    <Compile Include="Entities\Maps\Roads\SnapToRoads\Request\SnapToRoadsRequest.cs" />
+    <Compile Include="Entities\Maps\Roads\SnapToRoads\Response\SnapToRoadsResponse.cs" />
+    <Compile Include="Entities\Maps\Roads\SpeedLimits\Request\SpeedLimitsRequest.cs" />
+    <Compile Include="Entities\Maps\Roads\SpeedLimits\Response\SpeedLimit.cs" />
+    <Compile Include="Entities\Maps\Roads\SpeedLimits\Response\SpeedLimitsResponse.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Request\Enums\Anchor.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Request\Enums\Extensions\ImageFormatExtensions.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Request\Enums\ImageFormat.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Request\Enums\MapColor.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Request\Enums\MapScale.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Request\Enums\MapType.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Request\Enums\MarkerSize.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Request\MapMarker.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Request\MapMarkerIcon.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Request\MapPath.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Request\MapStyle.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Request\StaticMapsRequest.cs" />
+    <Compile Include="Entities\Maps\StaticMaps\Response\StaticMapsResponse.cs" />
+    <Compile Include="Entities\Maps\StreetView\Request\StreetViewRequest.cs" />
+    <Compile Include="Entities\Maps\StreetView\Response\StaticMapsResponse.cs" />
+    <Compile Include="Entities\Maps\TimeZone\Request\TimeZoneRequest.cs" />
+    <Compile Include="Entities\Maps\TimeZone\Response\TimeZoneResponse.cs" />
+    <Compile Include="Entities\Places\AutoComplete\Request\Enums\RestrictPlaceType.cs" />
+    <Compile Include="Entities\Places\AutoComplete\Request\PlacesAutoCompleteRequest.cs" />
+    <Compile Include="Entities\Places\AutoComplete\Response\PlacesAutoCompleteResponse.cs" />
+    <Compile Include="Entities\Places\BasePlacesRequest.cs" />
+    <Compile Include="Entities\Places\BasePlacesResponse.cs" />
+    <Compile Include="Entities\Places\Common\AlternativePlace.cs" />
+    <Compile Include="Entities\Places\Common\Enums\PriceLevel.cs" />
+    <Compile Include="Entities\Places\Common\Enums\Scope.cs" />
+    <Compile Include="Entities\Places\Common\MatchedSubstring.cs" />
+    <Compile Include="Entities\Places\Common\OpeningHours.cs" />
+    <Compile Include="Entities\Places\Common\Photo.cs" />
+    <Compile Include="Entities\Places\Common\Prediction.cs" />
+    <Compile Include="Entities\Places\Common\StructuredFormatting.cs" />
+    <Compile Include="Entities\Places\Common\Term.cs" />
+    <Compile Include="Entities\Places\Details\Request\Enums\Extensions.cs" />
+    <Compile Include="Entities\Places\Details\Request\Enums\FieldTypes.cs" />
+    <Compile Include="Entities\Places\Details\Request\PlacesDetailsRequest.cs" />
+    <Compile Include="Entities\Places\Details\Response\Aspect.cs" />
+    <Compile Include="Entities\Places\Details\Response\AspectRating.cs" />
+    <Compile Include="Entities\Places\Details\Response\DayTime.cs" />
+    <Compile Include="Entities\Places\Details\Response\DetailsResult.cs" />
+    <Compile Include="Entities\Places\Details\Response\Period.cs" />
+    <Compile Include="Entities\Places\Details\Response\PlacesDetailsResponse.cs" />
+    <Compile Include="Entities\Places\Details\Response\Review.cs" />
+    <Compile Include="Entities\Places\Photos\Request\PlacesPhotosRequest.cs" />
+    <Compile Include="Entities\Places\Photos\Response\PlacesPhotosResponse.cs" />
+    <Compile Include="Entities\Places\QueryAutoComplete\Request\PlacesQueryAutoCompleteRequest.cs" />
+    <Compile Include="Entities\Places\QueryAutoComplete\Response\PlacesQueryAutoCompleteResponse.cs" />
+    <Compile Include="Entities\Places\Search\Common\BaseResult.cs" />
+    <Compile Include="Entities\Places\Search\Common\Enums\SearchPlaceType.cs" />
+    <Compile Include="Entities\Places\Search\Common\OpeningHours.cs" />
+    <Compile Include="Entities\Places\Search\Find\Request\Enums\FieldTypes.cs" />
+    <Compile Include="Entities\Places\Search\Find\Request\Enums\InputType.cs" />
+    <Compile Include="Entities\Places\Search\Find\Request\PlacesFindSearchRequest.cs" />
+    <Compile Include="Entities\Places\Search\Find\Response\Candidate.cs" />
+    <Compile Include="Entities\Places\Search\Find\Response\PlacesTextSearchResponse.cs" />
+    <Compile Include="Entities\Places\Search\NearBy\Request\Enums\Ranking.cs" />
+    <Compile Include="Entities\Places\Search\NearBy\Request\PlacesNearBySearchRequest.cs" />
+    <Compile Include="Entities\Places\Search\NearBy\Response\NearByResult.cs" />
+    <Compile Include="Entities\Places\Search\NearBy\Response\PlacesNearbySearchResponse.cs" />
+    <Compile Include="Entities\Places\Search\Text\Request\PlacesTextSearchRequest.cs" />
+    <Compile Include="Entities\Places\Search\Text\Response\PlacesTextSearchResponse.cs" />
+    <Compile Include="Entities\Places\Search\Text\Response\TextResult.cs" />
+    <Compile Include="Entities\Search\BaseSearchRequest.cs" />
+    <Compile Include="Entities\Search\BaseSearchResponse.cs" />
+    <Compile Include="Entities\Search\Common\BodyLine.cs" />
+    <Compile Include="Entities\Search\Common\Context.cs" />
+    <Compile Include="Entities\Search\Common\Converters\DateRestrictJsonConverter.cs" />
+    <Compile Include="Entities\Search\Common\Converters\SortExpressionJsonConverter.cs" />
+    <Compile Include="Entities\Search\Common\CountryRestrict.cs" />
+    <Compile Include="Entities\Search\Common\CountryRestrictExpression.cs" />
+    <Compile Include="Entities\Search\Common\DateRestrict.cs" />
+    <Compile Include="Entities\Search\Common\Enums\AltType.cs" />
+    <Compile Include="Entities\Search\Common\Enums\ColorType.cs" />
+    <Compile Include="Entities\Search\Common\Enums\Country.cs" />
+    <Compile Include="Entities\Search\Common\Enums\DateRestrictType.cs" />
+    <Compile Include="Entities\Search\Common\Enums\DominantColorType.cs" />
+    <Compile Include="Entities\Search\Common\Enums\EncodingType.cs" />
+    <Compile Include="Entities\Search\Common\Enums\Extensions\CountryExtension.cs" />
+    <Compile Include="Entities\Search\Common\Enums\Extensions\DateRestrictTypeExtension.cs" />
+    <Compile Include="Entities\Search\Common\Enums\Extensions\EncodingTypeExtension.cs" />
+    <Compile Include="Entities\Search\Common\Enums\Extensions\GeoLocationExtension.cs" />
+    <Compile Include="Entities\Search\Common\Enums\Extensions\LanguageExtension.cs" />
+    <Compile Include="Entities\Search\Common\Enums\Extensions\OperatorExtension.cs" />
+    <Compile Include="Entities\Search\Common\Enums\Extensions\SiteSearchFilterExtension.cs" />
+    <Compile Include="Entities\Search\Common\Enums\FileType.cs" />
+    <Compile Include="Entities\Search\Common\Enums\GeoLocation.cs" />
+    <Compile Include="Entities\Search\Common\Enums\ImageSize.cs" />
+    <Compile Include="Entities\Search\Common\Enums\ImageType.cs" />
+    <Compile Include="Entities\Search\Common\Enums\Language.cs" />
+    <Compile Include="Entities\Search\Common\Enums\Operator.cs" />
+    <Compile Include="Entities\Search\Common\Enums\RightsType.cs" />
+    <Compile Include="Entities\Search\Common\Enums\SafetyLevel.cs" />
+    <Compile Include="Entities\Search\Common\Enums\SearchType.cs" />
+    <Compile Include="Entities\Search\Common\Enums\SiteSearchFilter.cs" />
+    <Compile Include="Entities\Search\Common\Enums\SortBy.cs" />
+    <Compile Include="Entities\Search\Common\Enums\SortOrder.cs" />
+    <Compile Include="Entities\Search\Common\Facet.cs" />
+    <Compile Include="Entities\Search\Common\Item.cs" />
+    <Compile Include="Entities\Search\Common\ItemImage.cs" />
+    <Compile Include="Entities\Search\Common\Label.cs" />
+    <Compile Include="Entities\Search\Common\PageMap.cs" />
+    <Compile Include="Entities\Search\Common\Promotion.cs" />
+    <Compile Include="Entities\Search\Common\PromotionImage.cs" />
+    <Compile Include="Entities\Search\Common\QueryInfo.cs" />
+    <Compile Include="Entities\Search\Common\SearchImageOptions.cs" />
+    <Compile Include="Entities\Search\Common\SearchInfo.cs" />
+    <Compile Include="Entities\Search\Common\SearchOptions.cs" />
+    <Compile Include="Entities\Search\Common\SiteSearch.cs" />
+    <Compile Include="Entities\Search\Common\SortExpression.cs" />
+    <Compile Include="Entities\Search\Common\Spelling.cs" />
+    <Compile Include="Entities\Search\Common\Url.cs" />
+    <Compile Include="Entities\Search\Image\Request\ImageSearchRequest.cs" />
+    <Compile Include="Entities\Search\Video\BaseVideoSearchRequest.cs" />
+    <Compile Include="Entities\Search\Video\BaseVideoSearchResponse.cs" />
+    <Compile Include="Entities\Search\Video\Channels\Request\ChannelsSearchRequest.cs" />
+    <Compile Include="Entities\Search\Video\Channels\Response\ChannelSearchResponse.cs" />
+    <Compile Include="Entities\Search\Video\Common\Enums\ChannelType.cs" />
+    <Compile Include="Entities\Search\Video\Common\Enums\Country.cs" />
+    <Compile Include="Entities\Search\Video\Common\Enums\EventType.cs" />
+    <Compile Include="Entities\Search\Video\Common\Enums\Extensions\CountryExtension.cs" />
+    <Compile Include="Entities\Search\Video\Common\Enums\Order.cs" />
+    <Compile Include="Entities\Search\Video\Common\Enums\PartType.cs" />
+    <Compile Include="Entities\Search\Video\Common\Enums\SafeSearch.cs" />
+    <Compile Include="Entities\Search\Video\Common\Id.cs" />
+    <Compile Include="Entities\Search\Video\Common\Item.cs" />
+    <Compile Include="Entities\Search\Video\Common\PageInfo.cs" />
+    <Compile Include="Entities\Search\Video\Common\Snippet.cs" />
+    <Compile Include="Entities\Search\Video\Common\Thumbnail.cs" />
+    <Compile Include="Entities\Search\Video\Common\Thumbnails.cs" />
+    <Compile Include="Entities\Search\Video\Playlists\Request\PlaylistSearchRequest.cs" />
+    <Compile Include="Entities\Search\Video\Playlists\Response\PlaylistSearchResponse.cs" />
+    <Compile Include="Entities\Search\Video\Videos\Request\Enums\VideoCaptionType.cs" />
+    <Compile Include="Entities\Search\Video\Videos\Request\Enums\VideoDefinitionType.cs" />
+    <Compile Include="Entities\Search\Video\Videos\Request\Enums\VideoDimensionType.cs" />
+    <Compile Include="Entities\Search\Video\Videos\Request\Enums\VideoDurationType.cs" />
+    <Compile Include="Entities\Search\Video\Videos\Request\Enums\VideoEmbeddableType.cs" />
+    <Compile Include="Entities\Search\Video\Videos\Request\Enums\VideoLicenseType.cs" />
+    <Compile Include="Entities\Search\Video\Videos\Request\Enums\VideoSyndicatedType.cs" />
+    <Compile Include="Entities\Search\Video\Videos\Request\Enums\VideoType.cs" />
+    <Compile Include="Entities\Search\Video\Videos\Request\VideoOptions.cs" />
+    <Compile Include="Entities\Search\Video\Videos\Request\VideoSearchRequest.cs" />
+    <Compile Include="Entities\Search\Video\Videos\Response\VideoSearchResponse.cs" />
+    <Compile Include="Entities\Search\Web\Request\WebSearchRequest.cs" />
+    <Compile Include="Entities\Translate\BaseTranslateRequest.cs" />
+    <Compile Include="Entities\Translate\Common\Enums\Extensions\LanguageExtension.cs" />
+    <Compile Include="Entities\Translate\Common\Enums\Extensions\StringExtension.cs" />
+    <Compile Include="Entities\Translate\Common\Enums\Language.cs" />
+    <Compile Include="Entities\Translate\Common\Enums\Model.cs" />
+    <Compile Include="Entities\Translate\Detect\Request\DetectRequest.cs" />
+    <Compile Include="Entities\Translate\Detect\Response\Data.cs" />
+    <Compile Include="Entities\Translate\Detect\Response\Detection.cs" />
+    <Compile Include="Entities\Translate\Detect\Response\DetectResponse.cs" />
+    <Compile Include="Entities\Translate\Languages\Request\LanguagesRequest.cs" />
+    <Compile Include="Entities\Translate\Languages\Response\Data.cs" />
+    <Compile Include="Entities\Translate\Languages\Response\LanguagesResponse.cs" />
+    <Compile Include="Entities\Translate\Languages\Response\SupportedLanguage.cs" />
+    <Compile Include="Entities\Translate\Translate\Request\Enums\Format.cs" />
+    <Compile Include="Entities\Translate\Translate\Request\TranslateRequest.cs" />
+    <Compile Include="Entities\Translate\Translate\Response\Data.cs" />
+    <Compile Include="Entities\Translate\Translate\Response\TranslateResponse.cs" />
+    <Compile Include="Entities\Translate\Translate\Response\Translation.cs" />
+    <Compile Include="Exceptions\GoogleApiException.cs" />
+    <Compile Include="GoogleFunctions.cs" />
+    <Compile Include="GoogleMaps.cs" />
+    <Compile Include="GooglePlaces.cs" />
+    <Compile Include="GoogleSearch.cs" />
+    <Compile Include="GoogleTranslate.cs" />
+    <Compile Include="HttpEngine.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>9.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Portable.BouncyCastle">
+      <Version>1.8.5</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\drawable\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
