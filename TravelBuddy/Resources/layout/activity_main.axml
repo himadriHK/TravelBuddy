@@ -12,11 +12,12 @@
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
-		android:id="@+id/textView1" />
+		android:id="@+id/textView1" 
+	 android:editable="true"/>
 	<EditText
 		android:inputType="textMultiLine"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/editText1" 
-	android:editable="false"/>
+	android:editable="true"/>
 </LinearLayout>
