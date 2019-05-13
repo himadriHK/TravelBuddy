@@ -15,6 +15,7 @@ using Android.Support.V4.Content;
 using GoogleApi.Entities.Places.Search.NearBy.Response;
 using Android.Gms.Location;
 
+
 namespace TravelBuddy
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
@@ -37,7 +38,21 @@ namespace TravelBuddy
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+            EditText et = FindViewById<EditText>(Resource.Id.editText2);
+            et.KeyPress += Et_KeyPress;
         }
+
+        private void Et_KeyPress(object sender, Android.Views.View.KeyEventArgs e)
+        {
+            //e.Handled = false;
+            if (e.Event.Action == Android.Views.KeyEventActions.Down && e.KeyCode == Android.Views.Keycode.Tab)
+            {
+                //Toast.MakeText(this, ((EditText)sender).Text, ToastLength.Short).Show();
+                location.getLocationByText(((EditText)sender).Text,this);
+                e.Handled = true;
+            }
+        }
+
 
         protected override void OnRestart()
         {

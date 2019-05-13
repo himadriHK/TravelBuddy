@@ -55,8 +55,8 @@ namespace TravelBuddy
 			await getLastLocationFromDevice(fusedLocationProvider);
 			LocationRequest locationRequest = new LocationRequest()
 				.SetPriority(LocationRequest.PriorityHighAccuracy)
-				.SetInterval(5000)
-				.SetFastestInterval(5000);
+				.SetInterval(10000)
+				.SetFastestInterval(10000);
 
             await fusedLocationProvider.RequestLocationUpdatesAsync(locationRequest, this);
 
@@ -97,7 +97,7 @@ namespace TravelBuddy
                 if (response2 != null && response2.Results.Any())
                 {
                     foreach (NearByResult nearByResult in response2.Results)
-                        et.Text += nearByResult.Name +"  Lat:"+ nearByResult.Geometry.Location.Latitude +"  Long:"+ nearByResult.Geometry.Location.Longitude + "\n";
+                        screenActivity.RunOnUiThread(()=>et.Text += nearByResult.Name +"  Lat:"+ nearByResult.Geometry.Location.Latitude +"  Long:"+ nearByResult.Geometry.Location.Longitude + "\n");
                 }
             }
             else
@@ -107,7 +107,7 @@ namespace TravelBuddy
 
         }
 
-        public void getLocationByText(string locationText)
+        public void getLocationByText(string locationText, Activity activity)
         {
             var request = new PlacesQueryAutoCompleteRequest
             {
@@ -116,19 +116,19 @@ namespace TravelBuddy
             };
 
             PlacesQueryAutoCompleteResponse response;
-            response = GooglePlaces.QueryAutoComplete.QueryAsync(request).Result;
+            response = GooglePlaces.QueryAutoComplete.Query(request);
 
             string res = "";
             if (response != null)
                 //need to place logic to deserialise and get the 
-                res += response.RawJson;
+                res += string.Join('\n', response.Predictions.Select(x => x.Description));
             else
                 res = "No Place Found";
 
-            //EditText et = screenActivity.FindViewById<EditText>(Resource.Id.editText1);
-            //et.Text = res;
-            TextView tv = screenActivity.FindViewById<TextView>(Resource.Id.textView1);
-            tv.Text = res;
+            EditText et = activity.FindViewById<EditText>(Resource.Id.editText1);
+            activity.RunOnUiThread(()=>et.Text = res);
+            //TextView tv = screenActivity.FindViewById<TextView>(Resource.Id.textView1);
+            //tv.Text = res;
         }
 
 

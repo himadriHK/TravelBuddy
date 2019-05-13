@@ -5,6 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 	android:orientation="vertical">
+		<EditText
+		android:inputType="textMultiLine"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/editText2" 
+	android:editable="true"/>
 	<TextView
 		android:text="Medium Text"
 		android:textAppearance="?android:attr/textAppearanceMedium"
