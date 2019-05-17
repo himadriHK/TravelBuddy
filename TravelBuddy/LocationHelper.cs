@@ -20,6 +20,8 @@ using GoogleApi.Entities.Places.Search.NearBy.Request;
 using GoogleApi.Entities.Places.Search.NearBy.Response;
 using GoogleApi.Entities.Places.QueryAutoComplete.Request;
 using GoogleApi.Entities.Places.QueryAutoComplete.Response;
+using GoogleApi.Entities.Maps.Common.Enums;
+using GoogleApi.Entities.Places.Search.Common.Enums;
 
 namespace TravelBuddy
 {
@@ -131,6 +133,19 @@ namespace TravelBuddy
             //tv.Text = res;
         }
 
+        //Method to search all around the given location taking a distance in radius to find
+        //the location by location type ex. restaurant, hotels, museums etc..
+        //return type is list of locations..which we will feed in method getAllTravelPlan
+        public void getAllNearbyLocationsByLocationType(Location currentLocation, float distance, SearchPlaceType []searchPlaceType) { }
+
+        // To get all the routes between source and destination..return type is list of routes based on Vehicle type(Travel Mode)
+        public void getRoutes(Location source, Location destination, TravelMode travelMode) { }
+
+        // Put identifier on route on Google Map to identify Location type ex. restaurant, hotels, museums etc..
+        public void putLocationIdentifierOnRoute() { }
+
+        //Propose route options to cover maximum places based on popularity and convinience and user choice and days of plan
+        public void getAllTravelPlan(Location location, int no_of_days, Location[] selectedLocationstoVisit) { }
 
     }
 }
