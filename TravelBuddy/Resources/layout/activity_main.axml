@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 	android:orientation="vertical">
+		<FrameLayout
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/frameLayout1">
+				<fragment
+		android:name=""
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/fragment1" 
+		class="com.google.android.gms.maps.MapFragment"/>
+		</FrameLayout>
 		<EditText
 		android:inputType="textMultiLine"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/editText2" 
+		android:id="@+id/editText1" 
+		android:text="Enter Source"
 	android:editable="true"/>
-	<TextView
-		android:text="Medium Text"
-		android:textAppearance="?android:attr/textAppearanceMedium"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:minWidth="25px"
-		android:minHeight="25px"
-		android:id="@+id/textView1" 
-	 android:editable="true"/>
 	<EditText
+		android:text="Enter Destination"
 		android:inputType="textMultiLine"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/editText1" 
+		android:id="@+id/editText2" 
+		android:layout_below="@+id/editText1"
 	android:editable="true"/>
-</LinearLayout>
+</RelativeLayout>

@@ -92,15 +92,15 @@ namespace TravelBuddy
                 };
 
                 var response2 = GooglePlaces.NearBySearch.Query(request2);
-                TextView tv = screenActivity.FindViewById<TextView>(Resource.Id.textView1);
-                EditText et = screenActivity.FindViewById<EditText>(Resource.Id.editText1);
-                tv.Text = string.Format("Location: Lat:{0} Long:{1}", currentLocation.Latitude, currentLocation.Longitude);
-                et.Text = string.Empty;
-                if (response2 != null && response2.Results.Any())
-                {
-                    foreach (NearByResult nearByResult in response2.Results)
-                        screenActivity.RunOnUiThread(()=>et.Text += nearByResult.Name +"  Lat:"+ nearByResult.Geometry.Location.Latitude +"  Long:"+ nearByResult.Geometry.Location.Longitude + "\n");
-                }
+                //TextView tv = screenActivity.FindViewById<TextView>(Resource.Id.textView1);
+                //EditText et = screenActivity.FindViewById<EditText>(Resource.Id.editText1);
+                //tv.Text = string.Format("Location: Lat:{0} Long:{1}", currentLocation.Latitude, currentLocation.Longitude);
+                //et.Text = string.Empty;
+                //if (response2 != null && response2.Results.Any())
+                //{
+                //    foreach (NearByResult nearByResult in response2.Results)
+                //        screenActivity.RunOnUiThread(()=>et.Text += nearByResult.Name +"  Lat:"+ nearByResult.Geometry.Location.Latitude +"  Long:"+ nearByResult.Geometry.Location.Longitude + "\n");
+                //}
             }
             else
             {
