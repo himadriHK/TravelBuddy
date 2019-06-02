@@ -18,19 +18,15 @@
 		android:id="@+id/fragment1" 
 		class="com.google.android.gms.maps.MapFragment"/>
 		</FrameLayout>
-		<EditText
-		android:inputType="textMultiLine"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:id="@+id/editText1" 
-		android:text="Enter Source"
-	android:editable="true"/>
-	<EditText
-		android:text="Enter Destination"
-		android:inputType="textMultiLine"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:id="@+id/editText2" 
-		android:layout_below="@+id/editText1"
-	android:editable="true"/>
+	<AutoCompleteTextView
+			android:layout_width="@dimen/abc_action_bar_stacked_tab_max_width"
+			android:layout_height="50dp"
+			android:id="@+id/autoCompleteTextView1"
+	android:hint="Enter Source"/>
+		<AutoCompleteTextView
+			android:layout_width="@dimen/abc_action_bar_stacked_tab_max_width"
+			android:layout_height="50dp"
+			android:id="@+id/autoCompleteTextView2" 
+		    android:layout_below="@+id/autoCompleteTextView1"
+	android:hint="Enter Destination"/>
 </RelativeLayout>

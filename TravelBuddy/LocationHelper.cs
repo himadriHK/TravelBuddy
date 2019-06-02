@@ -109,7 +109,7 @@ namespace TravelBuddy
 
         }
 
-        public void getLocationByText(string locationText, Activity activity)
+        public string[] getLocationByText(string locationText)
         {
             var request = new PlacesQueryAutoCompleteRequest
             {
@@ -120,15 +120,10 @@ namespace TravelBuddy
             PlacesQueryAutoCompleteResponse response;
             response = GooglePlaces.QueryAutoComplete.Query(request);
 
-            string res = "";
-            if (response != null)
-                //need to place logic to deserialise and get the 
-                res += string.Join('\n', response.Predictions.Select(x => x.Description));
-            else
-                res = "No Place Found";
+            return response.Predictions.Select(x => x.Description).ToArray();
 
-            EditText et = activity.FindViewById<EditText>(Resource.Id.editText1);
-            activity.RunOnUiThread(()=>et.Text = res);
+           // EditText et = activity.FindViewById<EditText>(Resource.Id.editText1);
+            //activity.RunOnUiThread(()=>et.Text = res);
             //TextView tv = screenActivity.FindViewById<TextView>(Resource.Id.textView1);
             //tv.Text = res;
         }
