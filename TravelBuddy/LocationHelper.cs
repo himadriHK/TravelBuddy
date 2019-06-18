@@ -25,31 +25,11 @@ using GoogleApi.Entities.Places.Search.Common.Enums;
 
 namespace TravelBuddy
 {
-    public class LocationHelper : LocationCallback
+    public class LocationHelper
     {
 	    public  Location currentLocation;
         private Activity screenActivity;
-	    public  void GetGpsAccess(Activity activity, View view)
-	    {
-		    if (ActivityCompat.ShouldShowRequestPermissionRationale(activity, Manifest.Permission.AccessCoarseLocation) || ActivityCompat.ShouldShowRequestPermissionRationale(activity, Manifest.Permission.AccessFineLocation))
-		    {
-
-			    var requiredPermissions = new String[] { Manifest.Permission.AccessCoarseLocation,Manifest.Permission.AccessFineLocation };
-			    Snackbar.Make(view,
-					    Resource.String.permission_location_rationale,
-					    Snackbar.LengthIndefinite)
-				    .SetAction(Resource.String.ok,
-					    new Action<View>(delegate (View obj) {
-							    ActivityCompat.RequestPermissions(activity, requiredPermissions, 100);
-						    }
-					    )
-				    ).Show();
-		    }
-		    else
-		    {
-			    ActivityCompat.RequestPermissions(activity, new String[] { Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation }, 100);
-		    }
-		}
+	    
 
 		public  async Task StartLocationRequestAsync(Activity activity)
 		{
@@ -60,7 +40,7 @@ namespace TravelBuddy
 				.SetInterval(10000)
 				.SetFastestInterval(10000);
 
-            await fusedLocationProvider.RequestLocationUpdatesAsync(locationRequest, this);
+            await fusedLocationProvider.RequestLocationUpdatesAsync(locationRequest, ((MainActivity)activity).locationCallback);
 
             screenActivity = activity;
 		}
@@ -77,37 +57,6 @@ namespace TravelBuddy
 
 		}
 
-        public override void OnLocationResult(LocationResult result)
-        {
-            if (result.Locations.Any())
-            {
-                currentLocation = result.Locations.First();
-                string key = "AIzaSyBA58FFbrOgnkHm5k3-i1cF2lJOhfouQ1I";
-
-                var request2 = new PlacesNearBySearchRequest
-                {
-                    Key = key,
-                    Location = new GoogleApi.Entities.Common.Location() { Latitude = currentLocation.Latitude, Longitude = currentLocation.Longitude },
-                    Radius = 500
-                };
-
-                var response2 = GooglePlaces.NearBySearch.Query(request2);
-                //TextView tv = screenActivity.FindViewById<TextView>(Resource.Id.textView1);
-                //EditText et = screenActivity.FindViewById<EditText>(Resource.Id.editText1);
-                //tv.Text = string.Format("Location: Lat:{0} Long:{1}", currentLocation.Latitude, currentLocation.Longitude);
-                //et.Text = string.Empty;
-                //if (response2 != null && response2.Results.Any())
-                //{
-                //    foreach (NearByResult nearByResult in response2.Results)
-                //        screenActivity.RunOnUiThread(()=>et.Text += nearByResult.Name +"  Lat:"+ nearByResult.Geometry.Location.Latitude +"  Long:"+ nearByResult.Geometry.Location.Longitude + "\n");
-                //}
-            }
-            else
-            {
-                // No locations to work with.
-            }
-
-        }
 
         public string[] getLocationByText(string locationText)
         {
