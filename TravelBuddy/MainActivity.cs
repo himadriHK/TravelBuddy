@@ -13,6 +13,8 @@ using Android.Support.V4.App;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Gms.Location;
+using Android.Locations;
+using Xamarin.Essentials;
 
 namespace TravelBuddy
 {
@@ -36,7 +38,7 @@ namespace TravelBuddy
             }
             else
             {
-                await location.StartLocationRequestAsync(this);
+	            ShowMap();
             }
 
             AutoCompleteTextView autoCompleteSource = FindViewById<AutoCompleteTextView>(Resource.Id.autoCompleteTextView1);
@@ -44,13 +46,20 @@ namespace TravelBuddy
             autoCompleteSource.TextChanged += AutoCompleteSource_TextChanged;
         }
 
+		  private async void ShowMap()
+		  {
+			  var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+			  var gps_location = await Geolocation.GetLocationAsync(request);
+			  location.currentLocation = new Android.Locations.Location(LocationService) { Latitude = gps_location.Latitude, Longitude = gps_location.Longitude };
+			  var mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.fragment1);
+			  mapFragment.GetMapAsync(this);
+		}
         private void LocationCallback_LocationResult(object sender, LocationCallbackResultEventArgs e)
         {
             if (e.Result.Locations.Any())
             {
                 location.currentLocation = e.Result.Locations.First();
-                var mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.fragment1);
-                mapFragment.GetMapAsync(this);
+
             }
             else
             {
@@ -120,12 +129,11 @@ namespace TravelBuddy
 
         }
 
-        public override async void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             if (grantResults.All(x => x == Permission.Granted))
             {
-                await location.StartLocationRequestAsync(this);
-
+	            ShowMap();
             }
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -138,7 +146,7 @@ namespace TravelBuddy
                 Permission.Granted)
             {
                 googleMap.MyLocationEnabled = true;
-                CameraPosition cameraPosition = new CameraPosition.Builder().Target(new Android.Gms.Maps.Model.LatLng(location.currentLocation.Latitude, location.currentLocation.Longitude)).Zoom(15).Build();
+                CameraPosition cameraPosition = new CameraPosition.Builder().Target(new Android.Gms.Maps.Model.LatLng(location.currentLocation.Latitude, location.currentLocation.Longitude)).Zoom(13).Build();
                 googleMap.AnimateCamera(CameraUpdateFactory.NewCameraPosition(cameraPosition),3000,null);
             }
                 
