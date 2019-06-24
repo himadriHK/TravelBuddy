@@ -15,6 +15,7 @@ using Android.Views;
 using Android.Gms.Location;
 using Android.Locations;
 using Xamarin.Essentials;
+using System.Collections.Generic;
 
 namespace TravelBuddy
 {
@@ -23,13 +24,13 @@ namespace TravelBuddy
     {
 	    private LocationHelper location = new LocationHelper();
         public LocationCallback locationCallback;
+        CustomArrayAdapter adapter;
+        GoogleMap googleMap;
 
-		  protected override async void OnCreate(Bundle savedInstanceState)
+          protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
-            locationCallback = new LocationCallback();
-            locationCallback.LocationResult += LocationCallback_LocationResult;
             if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessCoarseLocation) ==
                 Permission.Denied || ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) ==
                 Permission.Denied)
@@ -42,32 +43,35 @@ namespace TravelBuddy
             }
 
             AutoCompleteTextView autoCompleteSource = FindViewById<AutoCompleteTextView>(Resource.Id.autoCompleteTextView1);
-            autoCompleteSource.KeyPress += AutoCompleteSource_KeyPress;
+            adapter = new CustomArrayAdapter(this, Resource.Layout.list_view, location.getLocationByText);
+            
+            autoCompleteSource.Adapter = adapter;
+            autoCompleteSource.Threshold = 2;
             autoCompleteSource.TextChanged += AutoCompleteSource_TextChanged;
+            autoCompleteSource.ItemClick += AutoCompleteSource_ItemClick;
         }
 
-		  private async void ShowMap()
+        private async void AutoCompleteSource_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            View vw = FindViewById(Resource.Layout.activity_main);
+            KeyValuePair<string,string> kvp = adapter.GetPlaceDetails(e.Position);
+            GoogleApi.Entities.Common.Location loc = await location.GetLatLngFromPlaceId(kvp.Key);
+            LatLng latLng = new LatLng(loc.Latitude, loc.Longitude);
+            CameraPosition cameraPosition = new CameraPosition.Builder().Target(latLng).Zoom(13).Build();
+            googleMap.AnimateCamera(CameraUpdateFactory.NewCameraPosition(cameraPosition), 3000, null);
+            //Snackbar.Make(vw, str, Snackbar.LengthLong).SetAction(str,new Action<View>(delegate (View obj) { })).Show();
+        }
+
+
+        private async void ShowMap()
 		  {
 			  var request = new GeolocationRequest(GeolocationAccuracy.Medium);
 			  var gps_location = await Geolocation.GetLocationAsync(request);
 			  location.currentLocation = new Android.Locations.Location(LocationService) { Latitude = gps_location.Latitude, Longitude = gps_location.Longitude };
-			  var mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.fragment1);
+			  var mapFragment = (SupportMapFragment)SupportFragmentManager.FindFragmentById(Resource.Id.fragment1);
 			  mapFragment.GetMapAsync(this);
 		}
-        private void LocationCallback_LocationResult(object sender, LocationCallbackResultEventArgs e)
-        {
-            if (e.Result.Locations.Any())
-            {
-                location.currentLocation = e.Result.Locations.First();
-
-            }
-            else
-            {
-                // No locations to work with.
-            }
-        }
-
-
+       
         private void GetGpsAccess(Activity activity, View view)
         {
             if (ActivityCompat.ShouldShowRequestPermissionRationale(activity, Manifest.Permission.AccessCoarseLocation) || ActivityCompat.ShouldShowRequestPermissionRationale(activity, Manifest.Permission.AccessFineLocation))
@@ -93,34 +97,18 @@ namespace TravelBuddy
         private void AutoCompleteSource_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
             
-            if (e.Text.ToString() != string.Empty)
-            {
-                AutoCompleteTextView autoCompleteSource = (AutoCompleteTextView)sender;
-                string[] places = location.getLocationByText(autoCompleteSource.Text);
-                var adapter = new ArrayAdapter<String>(this, Resource.Layout.list_view, places);
-                autoCompleteSource.Adapter = adapter;
-            }
+          //if (e.Text.ToString() != string.Empty)
+          //{
+          //    //RunOnUiThread(async () =>
+          //    //{
+          //    //    Dictionary<string, string> places = await location.getLocationByText(e.Text.ToString());
+          //    //    adapter.AddNewPlaces(places);
+          //    //    
+          //    //});
+          //    ((AutoCompleteTextView)sender).Adapter = adapter;
+          //}
         }
-
-        private void AutoCompleteSource_KeyPress(object sender, Android.Views.View.KeyEventArgs e)
-        {
-            //if (SystemClock.UptimeMillis() - e.Event.DownTime >= 500)
-            {
-               
-            }
-        }
-
-        private void Et_KeyPress(object sender, Android.Views.View.KeyEventArgs e)
-        {
-            //e.Handled = false;
-            if (e.Event.Action == Android.Views.KeyEventActions.Down && e.KeyCode == Android.Views.Keycode.Tab)
-            {
-                //Toast.MakeText(this, ((EditText)sender).Text, ToastLength.Short).Show();
-                //location.getLocationByText(((EditText)sender).Text,this);
-                e.Handled = true;
-            }
-        }
-
+    
 
         protected override void OnRestart()
         {
@@ -145,6 +133,7 @@ namespace TravelBuddy
                 Permission.Granted || ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) ==
                 Permission.Granted)
             {
+                this.googleMap = googleMap;
                 googleMap.MyLocationEnabled = true;
                 CameraPosition cameraPosition = new CameraPosition.Builder().Target(new Android.Gms.Maps.Model.LatLng(location.currentLocation.Latitude, location.currentLocation.Longitude)).Zoom(13).Build();
                 googleMap.AnimateCamera(CameraUpdateFactory.NewCameraPosition(cameraPosition),3000,null);

@@ -16,7 +16,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:id="@+id/fragment1" 
-		class="com.google.android.gms.maps.MapFragment"/>
+		class="com.google.android.gms.maps.SupportMapFragment"/>
 		</FrameLayout>
 	<AutoCompleteTextView
 			android:layout_width="@dimen/abc_action_bar_stacked_tab_max_width"

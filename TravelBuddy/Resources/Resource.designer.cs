@@ -3453,8 +3453,8 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d0049
 			public const int SYM = 2131558473;
 			
-			// aapt resource value: 0x7f0d00bf
-			public const int action0 = 2131558591;
+			// aapt resource value: 0x7f0d00c0
+			public const int action0 = 2131558592;
 			
 			// aapt resource value: 0x7f0d0097
 			public const int action_bar = 2131558551;
@@ -3477,17 +3477,17 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d0073
 			public const int action_bar_title = 2131558515;
 			
-			// aapt resource value: 0x7f0d00bc
-			public const int action_container = 2131558588;
+			// aapt resource value: 0x7f0d00bd
+			public const int action_container = 2131558589;
 			
 			// aapt resource value: 0x7f0d0098
 			public const int action_context_bar = 2131558552;
 			
-			// aapt resource value: 0x7f0d00c3
-			public const int action_divider = 2131558595;
+			// aapt resource value: 0x7f0d00c4
+			public const int action_divider = 2131558596;
 			
-			// aapt resource value: 0x7f0d00bd
-			public const int action_image = 2131558589;
+			// aapt resource value: 0x7f0d00be
+			public const int action_image = 2131558590;
 			
 			// aapt resource value: 0x7f0d0003
 			public const int action_menu_divider = 2131558403;
@@ -3504,11 +3504,11 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d0075
 			public const int action_mode_close_button = 2131558517;
 			
-			// aapt resource value: 0x7f0d00be
-			public const int action_text = 2131558590;
+			// aapt resource value: 0x7f0d00bf
+			public const int action_text = 2131558591;
 			
-			// aapt resource value: 0x7f0d00cc
-			public const int actions = 2131558604;
+			// aapt resource value: 0x7f0d00cd
+			public const int actions = 2131558605;
 			
 			// aapt resource value: 0x7f0d0076
 			public const int activity_chooser_view_content = 2131558518;
@@ -3536,6 +3536,9 @@ namespace TravelBuddy
 			
 			// aapt resource value: 0x7f0d002e
 			public const int auto = 2131558446;
+			
+			// aapt resource value: 0x7f0d00bc
+			public const int autoCompleteOption = 2131558588;
 			
 			// aapt resource value: 0x7f0d00a9
 			public const int autoCompleteTextView1 = 2131558569;
@@ -3570,8 +3573,8 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d007c
 			public const int buttonPanel = 2131558524;
 			
-			// aapt resource value: 0x7f0d00c0
-			public const int cancel_action = 2131558592;
+			// aapt resource value: 0x7f0d00c1
+			public const int cancel_action = 2131558593;
 			
 			// aapt resource value: 0x7f0d0057
 			public const int center = 2131558487;
@@ -3585,8 +3588,8 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d0090
 			public const int checkbox = 2131558544;
 			
-			// aapt resource value: 0x7f0d00c8
-			public const int chronometer = 2131558600;
+			// aapt resource value: 0x7f0d00c9
+			public const int chronometer = 2131558601;
 			
 			// aapt resource value: 0x7f0d006b
 			public const int clip_horizontal = 2131558507;
@@ -3648,8 +3651,8 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d0042
 			public const int end = 2131558466;
 			
-			// aapt resource value: 0x7f0d00ce
-			public const int end_padder = 2131558606;
+			// aapt resource value: 0x7f0d00cf
+			public const int end_padder = 2131558607;
 			
 			// aapt resource value: 0x7f0d0051
 			public const int enterAlways = 2131558481;
@@ -3708,8 +3711,8 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d007b
 			public const int icon = 2131558523;
 			
-			// aapt resource value: 0x7f0d00cd
-			public const int icon_group = 2131558605;
+			// aapt resource value: 0x7f0d00ce
+			public const int icon_group = 2131558606;
 			
 			// aapt resource value: 0x7f0d002b
 			public const int icon_only = 2131558443;
@@ -3720,8 +3723,8 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d0078
 			public const int image = 2131558520;
 			
-			// aapt resource value: 0x7f0d00c9
-			public const int info = 2131558601;
+			// aapt resource value: 0x7f0d00ca
+			public const int info = 2131558602;
 			
 			// aapt resource value: 0x7f0d0072
 			public const int italic = 2131558514;
@@ -3753,11 +3756,11 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d007a
 			public const int list_item = 2131558522;
 			
-			// aapt resource value: 0x7f0d00d0
-			public const int masked = 2131558608;
+			// aapt resource value: 0x7f0d00d1
+			public const int masked = 2131558609;
 			
-			// aapt resource value: 0x7f0d00c2
-			public const int media_actions = 2131558594;
+			// aapt resource value: 0x7f0d00c3
+			public const int media_actions = 2131558595;
 			
 			// aapt resource value: 0x7f0d00a6
 			public const int message = 2131558566;
@@ -3789,14 +3792,14 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d0026
 			public const int normal = 2131558438;
 			
-			// aapt resource value: 0x7f0d00cb
-			public const int notification_background = 2131558603;
+			// aapt resource value: 0x7f0d00cc
+			public const int notification_background = 2131558604;
+			
+			// aapt resource value: 0x7f0d00c6
+			public const int notification_main_column = 2131558598;
 			
 			// aapt resource value: 0x7f0d00c5
-			public const int notification_main_column = 2131558597;
-			
-			// aapt resource value: 0x7f0d00c4
-			public const int notification_main_column_container = 2131558596;
+			public const int notification_main_column_container = 2131558597;
 			
 			// aapt resource value: 0x7f0d006a
 			public const int outline = 2131558506;
@@ -3825,11 +3828,11 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d005f
 			public const int right = 2131558495;
 			
-			// aapt resource value: 0x7f0d00ca
-			public const int right_icon = 2131558602;
+			// aapt resource value: 0x7f0d00cb
+			public const int right_icon = 2131558603;
 			
-			// aapt resource value: 0x7f0d00c6
-			public const int right_side = 2131558598;
+			// aapt resource value: 0x7f0d00c7
+			public const int right_side = 2131558599;
 			
 			// aapt resource value: 0x7f0d0027
 			public const int satellite = 2131558439;
@@ -3945,8 +3948,8 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d0060
 			public const int start = 2131558496;
 			
-			// aapt resource value: 0x7f0d00c1
-			public const int status_bar_latest_event_content = 2131558593;
+			// aapt resource value: 0x7f0d00c2
+			public const int status_bar_latest_event_content = 2131558594;
 			
 			// aapt resource value: 0x7f0d0065
 			public const int stretch = 2131558501;
@@ -3999,8 +4002,8 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d001a
 			public const int textinput_helper_text = 2131558426;
 			
-			// aapt resource value: 0x7f0d00c7
-			public const int time = 2131558599;
+			// aapt resource value: 0x7f0d00c8
+			public const int time = 2131558600;
 			
 			// aapt resource value: 0x7f0d0023
 			public const int title = 2131558435;
@@ -4050,8 +4053,8 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d001b
 			public const int view_offset_helper = 2131558427;
 			
-			// aapt resource value: 0x7f0d00cf
-			public const int visible = 2131558607;
+			// aapt resource value: 0x7f0d00d0
+			public const int visible = 2131558608;
 			
 			// aapt resource value: 0x7f0d002d
 			public const int wide = 2131558445;

@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Android;
-using Android.App;
-using Android.Content;
+﻿using Android.App;
 using Android.Gms.Location;
+using Android.Gms.Maps.Model;
 using Android.Locations;
-using Android.OS;
-using Android.Runtime;
-using Android.Support.Design.Widget;
-using Android.Support.V4.App;
-using Android.Util;
-using Android.Views;
-using Android.Widget;
 using GoogleApi;
-using GoogleApi.Entities.Places.Search.NearBy.Request;
-using GoogleApi.Entities.Places.Search.NearBy.Response;
+using GoogleApi.Entities.Maps.Common.Enums;
 using GoogleApi.Entities.Places.QueryAutoComplete.Request;
 using GoogleApi.Entities.Places.QueryAutoComplete.Response;
-using GoogleApi.Entities.Maps.Common.Enums;
 using GoogleApi.Entities.Places.Search.Common.Enums;
+using GoogleApi.Entities.Places.Details.Request;
+using GoogleApi.Entities.Places.Details.Response;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace TravelBuddy
 {
@@ -58,23 +49,29 @@ namespace TravelBuddy
 		}
 
 
-        public string[] getLocationByText(string locationText)
+        public Dictionary<string,string> getLocationByText(string locationText)
         {
             var request = new PlacesQueryAutoCompleteRequest
             {
                 Key = "AIzaSyBA58FFbrOgnkHm5k3-i1cF2lJOhfouQ1I",//this.ApiKey,
                 Input = locationText //"jagtvej 2200"
             };
-
+            CancellationTokenSource tokenSource = new CancellationTokenSource(new System.TimeSpan(0, 0, 2));
             PlacesQueryAutoCompleteResponse response;
-            response = GooglePlaces.QueryAutoComplete.Query(request);
+            var task = GooglePlaces.QueryAutoComplete.QueryAsync(request);
+            //task.RunSynchronously();
+            task.Wait(new System.TimeSpan(0, 0, 5));
+            response = task.Result;
 
-            return response.Predictions.Select(x => x.Description).ToArray();
+            return response.Predictions.Where(x=>x.PlaceId!=null).ToDictionary(x=>x.PlaceId,x=>x.StructuredFormatting.MainText);
 
-           // EditText et = activity.FindViewById<EditText>(Resource.Id.editText1);
-            //activity.RunOnUiThread(()=>et.Text = res);
-            //TextView tv = screenActivity.FindViewById<TextView>(Resource.Id.textView1);
-            //tv.Text = res;
+        }
+
+        public async Task<GoogleApi.Entities.Common.Location> GetLatLngFromPlaceId(string placeId)
+        {
+            var req = new PlacesDetailsRequest { PlaceId = placeId, Key = "AIzaSyBA58FFbrOgnkHm5k3-i1cF2lJOhfouQ1I" };
+            var response = await GooglePlaces.Details.QueryAsync(req);
+            return response.Result.Geometry.Location;
         }
 
         //Method to search all around the given location taking a distance in radius to find

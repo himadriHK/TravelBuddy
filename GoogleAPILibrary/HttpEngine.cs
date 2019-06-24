@@ -21,7 +21,7 @@ namespace GoogleApi
     public abstract class HttpEngine : IDisposable
     {
         private static HttpClient httpClient;
-        private static readonly TimeSpan httpTimeout = new TimeSpan(0, 0, 30);
+        private static readonly TimeSpan httpTimeout = new TimeSpan(0, 0, 10);
 
         /// <summary>
         /// Http Client.
@@ -42,7 +42,7 @@ namespace GoogleApi
 								
                     };
 
-                    HttpEngine.httpClient = new HttpClient(httpClientHandler)
+                    HttpEngine.httpClient = new HttpClient()
                     {
                         Timeout = HttpEngine.httpTimeout
                     };
