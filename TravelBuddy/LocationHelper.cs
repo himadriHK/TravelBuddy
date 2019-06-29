@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
+using System;
+using GoogleApi.Entities.Maps.Directions.Request;
+using GoogleApi.Entities.Maps.Directions.Response;
 
 namespace TravelBuddy
 {
@@ -56,14 +59,18 @@ namespace TravelBuddy
                 Key = "AIzaSyBA58FFbrOgnkHm5k3-i1cF2lJOhfouQ1I",//this.ApiKey,
                 Input = locationText //"jagtvej 2200"
             };
-            CancellationTokenSource tokenSource = new CancellationTokenSource(new System.TimeSpan(0, 0, 2));
+            //CancellationTokenSource tokenSource = new CancellationTokenSource(new System.TimeSpan(0, 0, 2));
             PlacesQueryAutoCompleteResponse response;
             var task = GooglePlaces.QueryAutoComplete.QueryAsync(request);
             //task.RunSynchronously();
-            task.Wait(new System.TimeSpan(0, 0, 5));
-            response = task.Result;
+            task.Wait(new System.TimeSpan(0, 0, 2));
 
-            return response.Predictions.Where(x=>x.PlaceId!=null).ToDictionary(x=>x.PlaceId,x=>x.StructuredFormatting.MainText);
+            if (task.IsCompleted)
+                response = task.Result;
+            else
+                response = new PlacesQueryAutoCompleteResponse();
+            var result = response.Predictions?.Where(x => x.PlaceId != null)?.ToDictionary(x => x.PlaceId, x => string.Join(",",string.Concat(x.StructuredFormatting.MainText, ",", x.StructuredFormatting.SecondaryText).Split(",").Take(2)));
+            return result??new Dictionary<string, string>() ;
 
         }
 
@@ -88,5 +95,17 @@ namespace TravelBuddy
         //Propose route options to cover maximum places based on popularity and convinience and user choice and days of plan
         public void getAllTravelPlan(Location location, int no_of_days, Location[] selectedLocationstoVisit) { }
 
+        public LatLng[] getPath(LatLng source, LatLng destination, out LatLngBounds latLngBounds)
+        {
+            DirectionsRequest directionsRequest = new DirectionsRequest();
+            directionsRequest.Key = "AIzaSyBA58FFbrOgnkHm5k3-i1cF2lJOhfouQ1I";
+            directionsRequest.Origin = new GoogleApi.Entities.Common.Location(source.Latitude, source.Longitude);
+            directionsRequest.Destination = new GoogleApi.Entities.Common.Location(destination.Latitude, destination.Longitude);
+            DirectionsResponse directionsResponse = GoogleApi.GoogleMaps.Directions.Query(directionsRequest);
+            Route route = directionsResponse.Routes.First();
+            LatLng[] points = route.OverviewPath.Line.Select(x=>new LatLng(x.Latitude,x.Longitude)).ToArray();
+            latLngBounds = new LatLngBounds(new LatLng(route.Bounds.SouthWest.Latitude, route.Bounds.SouthWest.Longitude), new LatLng(route.Bounds.NorthEast.Latitude, route.Bounds.NorthEast.Longitude));
+            return points;
+        }
     }
 }

@@ -19,14 +19,16 @@
 		class="com.google.android.gms.maps.SupportMapFragment"/>
 		</FrameLayout>
 	<AutoCompleteTextView
-			android:layout_width="@dimen/abc_action_bar_stacked_tab_max_width"
+			android:layout_width="350dp"
 			android:layout_height="50dp"
-			android:id="@+id/autoCompleteTextView1"
-	android:hint="Enter Source"/>
+			android:textSize="16dp"
+			android:id="@+id/autoCompleteSource"
+			android:hint="Enter Source"/>
 		<AutoCompleteTextView
-			android:layout_width="@dimen/abc_action_bar_stacked_tab_max_width"
+			android:layout_width="350dp"
 			android:layout_height="50dp"
-			android:id="@+id/autoCompleteTextView2" 
-		    android:layout_below="@+id/autoCompleteTextView1"
-	android:hint="Enter Destination"/>
+			android:textSize="16dp"
+			android:id="@+id/autoCompleteDestination" 
+		    android:layout_below="@+id/autoCompleteSource"
+			android:hint="Enter Destination"/>
 </RelativeLayout>

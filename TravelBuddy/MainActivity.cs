@@ -26,8 +26,10 @@ namespace TravelBuddy
         public LocationCallback locationCallback;
         CustomArrayAdapter adapter;
         GoogleMap googleMap;
+        MarkerOptions sourceMarkerOptions = new MarkerOptions();
+        MarkerOptions destinationMarkerOptions = new MarkerOptions();
 
-          protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
@@ -42,26 +44,66 @@ namespace TravelBuddy
 	            ShowMap();
             }
 
-            AutoCompleteTextView autoCompleteSource = FindViewById<AutoCompleteTextView>(Resource.Id.autoCompleteTextView1);
+            AutoCompleteTextView autoCompleteSource = FindViewById<AutoCompleteTextView>(Resource.Id.autoCompleteSource);
+            AutoCompleteTextView autoCompleteDestination = FindViewById<AutoCompleteTextView>(Resource.Id.autoCompleteDestination);
             adapter = new CustomArrayAdapter(this, Resource.Layout.list_view, location.getLocationByText);
             
             autoCompleteSource.Adapter = adapter;
             autoCompleteSource.Threshold = 2;
-            autoCompleteSource.TextChanged += AutoCompleteSource_TextChanged;
             autoCompleteSource.ItemClick += AutoCompleteSource_ItemClick;
+
+            autoCompleteDestination.Adapter = adapter;
+            autoCompleteDestination.Threshold = 2;
+            autoCompleteDestination.ItemClick += AutoCompleteSource_ItemClick;
+
+            location.getLocationByText("India");
+
+            
         }
 
         private async void AutoCompleteSource_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            View vw = FindViewById(Resource.Layout.activity_main);
-            KeyValuePair<string,string> kvp = adapter.GetPlaceDetails(e.Position);
+            AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView)sender;
+            KeyValuePair<string, string> kvp = adapter.GetPlaceDetails(e.Position);
             GoogleApi.Entities.Common.Location loc = await location.GetLatLngFromPlaceId(kvp.Key);
             LatLng latLng = new LatLng(loc.Latitude, loc.Longitude);
-            CameraPosition cameraPosition = new CameraPosition.Builder().Target(latLng).Zoom(13).Build();
+            CameraPosition cameraPosition = new CameraPosition.Builder().Target(latLng).Zoom(15).Build();
             googleMap.AnimateCamera(CameraUpdateFactory.NewCameraPosition(cameraPosition), 3000, null);
-            //Snackbar.Make(vw, str, Snackbar.LengthLong).SetAction(str,new Action<View>(delegate (View obj) { })).Show();
+            googleMap.Clear();
+
+            if (autoCompleteTextView.Id == Resource.Id.autoCompleteSource)
+            {
+                sourceMarkerOptions.SetPosition(latLng);
+                sourceMarkerOptions.SetTitle("Start");
+            }
+            else if(autoCompleteTextView.Id == Resource.Id.autoCompleteDestination)
+            {
+                destinationMarkerOptions.SetPosition(latLng);
+                destinationMarkerOptions.SetTitle("End");
+            }
+
+            if(sourceMarkerOptions.Position !=null)
+                googleMap.AddMarker(sourceMarkerOptions);
+
+            if(destinationMarkerOptions.Position != null)
+                googleMap.AddMarker(destinationMarkerOptions);
+
+            if(sourceMarkerOptions.Position != null && destinationMarkerOptions.Position != null)
+            {
+                ShowTheWay();
+            }
         }
 
+        private void ShowTheWay()
+        {
+            PolylineOptions polylineOptions = new PolylineOptions();
+            LatLngBounds bounds;
+            LatLng[] points = location.getPath(sourceMarkerOptions.Position, destinationMarkerOptions.Position,out bounds);
+            polylineOptions.Add(points);
+            googleMap.AddPolyline(polylineOptions);
+
+            googleMap.AnimateCamera(CameraUpdateFactory.NewLatLngBounds(bounds, 20),2000,null);
+        }
 
         private async void ShowMap()
 		  {
@@ -94,29 +136,6 @@ namespace TravelBuddy
             }
         }
 
-        private void AutoCompleteSource_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
-        {
-            
-          //if (e.Text.ToString() != string.Empty)
-          //{
-          //    //RunOnUiThread(async () =>
-          //    //{
-          //    //    Dictionary<string, string> places = await location.getLocationByText(e.Text.ToString());
-          //    //    adapter.AddNewPlaces(places);
-          //    //    
-          //    //});
-          //    ((AutoCompleteTextView)sender).Adapter = adapter;
-          //}
-        }
-    
-
-        protected override void OnRestart()
-        {
-	        base.OnRestart();
-	        SetContentView(Resource.Layout.activity_main);
-
-        }
-
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             if (grantResults.All(x => x == Permission.Granted))
@@ -135,11 +154,18 @@ namespace TravelBuddy
             {
                 this.googleMap = googleMap;
                 googleMap.MyLocationEnabled = true;
-                CameraPosition cameraPosition = new CameraPosition.Builder().Target(new Android.Gms.Maps.Model.LatLng(location.currentLocation.Latitude, location.currentLocation.Longitude)).Zoom(13).Build();
+                LatLng latLng = new Android.Gms.Maps.Model.LatLng(location.currentLocation.Latitude, location.currentLocation.Longitude);
+                CameraPosition cameraPosition = new CameraPosition.Builder().Target(latLng).Zoom(13).Build();
+                sourceMarkerOptions.SetPosition(latLng);
+                
                 googleMap.AnimateCamera(CameraUpdateFactory.NewCameraPosition(cameraPosition),3000,null);
             }
-                
-            //throw new System.NotImplementedException();
+
+            googleMap.UiSettings.ScrollGesturesEnabled = true;
+            googleMap.UiSettings.ZoomGesturesEnabled = true;
+
         }
+
+        
     }
 }

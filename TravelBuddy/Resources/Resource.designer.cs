@@ -3537,14 +3537,14 @@ namespace TravelBuddy
 			// aapt resource value: 0x7f0d002e
 			public const int auto = 2131558446;
 			
+			// aapt resource value: 0x7f0d00aa
+			public const int autoCompleteDestination = 2131558570;
+			
 			// aapt resource value: 0x7f0d00bc
 			public const int autoCompleteOption = 2131558588;
 			
 			// aapt resource value: 0x7f0d00a9
-			public const int autoCompleteTextView1 = 2131558569;
-			
-			// aapt resource value: 0x7f0d00aa
-			public const int autoCompleteTextView2 = 2131558570;
+			public const int autoCompleteSource = 2131558569;
 			
 			// aapt resource value: 0x7f0d0041
 			public const int beginning = 2131558465;
