@@ -34,6 +34,7 @@ namespace GoogleApi
                 {
 	                var proxyHost = JavaSystem.GetProperty("http.proxyHost");
 	                var proxyPort = JavaSystem.GetProperty("http.proxyPort");
+	                JavaSystem.SetProperty("java.net.useSystemProxies", "true");
 					var httpClientHandler = new HttpClientHandler
                     {
                         AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,

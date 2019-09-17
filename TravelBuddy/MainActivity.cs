@@ -16,6 +16,7 @@ using Android.Gms.Location;
 using Android.Locations;
 using Xamarin.Essentials;
 using System.Collections.Generic;
+using Android.Views.InputMethods;
 
 namespace TravelBuddy
 {
@@ -28,8 +29,8 @@ namespace TravelBuddy
         GoogleMap googleMap;
         MarkerOptions sourceMarkerOptions = new MarkerOptions();
         MarkerOptions destinationMarkerOptions = new MarkerOptions();
-
-        protected override void OnCreate(Bundle savedInstanceState)
+        InputMethodManager inputManager ;
+		protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
@@ -58,8 +59,8 @@ namespace TravelBuddy
 
             location.getLocationByText("India");
 
-            
-        }
+				inputManager = (InputMethodManager)GetSystemService(InputMethodService);
+		}
 
         private async void AutoCompleteSource_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
@@ -102,8 +103,11 @@ namespace TravelBuddy
             polylineOptions.Add(points);
             googleMap.AddPolyline(polylineOptions);
 
-            googleMap.AnimateCamera(CameraUpdateFactory.NewLatLngBounds(bounds, 20),2000,null);
-        }
+            googleMap.AnimateCamera(CameraUpdateFactory.NewLatLngBounds(bounds, 60),2000,null);
+
+            
+            inputManager.HideSoftInputFromWindow(this.CurrentFocus.WindowToken, HideSoftInputFlags.None);
+		}
 
         private async void ShowMap()
 		  {
