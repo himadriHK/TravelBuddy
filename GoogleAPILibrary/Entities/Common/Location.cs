@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using Newtonsoft.Json;
 
 namespace GoogleApi.Entities.Common
@@ -6,7 +7,7 @@ namespace GoogleApi.Entities.Common
     /// <summary>
     /// Location.
     /// </summary>
-    public class Location
+    public class Location:IEqualityComparer<Location>
     {
         /// <summary>
         /// Latitude.
@@ -62,6 +63,16 @@ namespace GoogleApi.Entities.Common
         public override string ToString()
         {
             return this.Address ?? this.Latitude.ToString(CultureInfo.InvariantCulture) + "," + this.Longitude.ToString(CultureInfo.InvariantCulture);
+        }
+
+        public bool Equals(Location x, Location y)
+        {
+	        return (x.Longitude == y.Longitude) && (x.Latitude == y.Latitude);
+        }
+
+        public int GetHashCode(Location obj)
+        {
+	        return obj.GetHashCode();
         }
     }
 }

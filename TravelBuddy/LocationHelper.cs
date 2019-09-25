@@ -4,22 +4,20 @@ using Android.Gms.Maps.Model;
 using Android.Locations;
 using GoogleApi;
 using GoogleApi.Entities.Maps.Common.Enums;
+using GoogleApi.Entities.Maps.Directions.Request;
+using GoogleApi.Entities.Maps.Directions.Response;
+using GoogleApi.Entities.Places.Details.Request;
 using GoogleApi.Entities.Places.QueryAutoComplete.Request;
 using GoogleApi.Entities.Places.QueryAutoComplete.Response;
 using GoogleApi.Entities.Places.Search.Common.Enums;
-using GoogleApi.Entities.Places.Details.Request;
-using GoogleApi.Entities.Places.Details.Response;
+using Java.Lang;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Threading;
-using System;
-using GoogleApi.Entities.Maps.Directions.Request;
-using GoogleApi.Entities.Maps.Directions.Response;
 
 namespace TravelBuddy
 {
-    public class LocationHelper
+	public class LocationHelper
     {
 	    public  Location currentLocation;
         private Activity screenActivity;
@@ -107,5 +105,18 @@ namespace TravelBuddy
             latLngBounds = new LatLngBounds(new LatLng(route.Bounds.SouthWest.Latitude, route.Bounds.SouthWest.Longitude), new LatLng(route.Bounds.NorthEast.Latitude, route.Bounds.NorthEast.Longitude));
             return points;
         }
+
+        public LatLng[] getNearbyLocations(LatLng[] path, LatLng[] locations)
+        {
+	        List<LatLng> result = new List<LatLng>();
+	        foreach (var latLng in path)
+	        {
+		        result.AddRange(locations.Where(x=> ((Math.Abs((x.Latitude - latLng.Latitude)) <= 0.002) && (Math.Abs((x.Longitude - latLng.Longitude)) <= 0.002)) || (Math.Abs((x.Latitude-latLng.Latitude)) <=0.002) || (Math.Abs((x.Longitude - latLng.Longitude)) <= 0.002)));
+	        }
+
+	        return result.Distinct().ToArray();
+        }
     }
+
+    
 }

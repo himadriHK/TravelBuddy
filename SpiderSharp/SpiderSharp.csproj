@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{829D8894-B862-40A4-A293-8ECDF37B7598}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{9ef11e43-1701-4396-8835-8392d57abb70}</TemplateGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SpiderSharp</RootNamespace>
+    <AssemblyName>SpiderSharp</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddPipelines\AddDasherizePipeline.cs" />
+    <Compile Include="AddPipelines\AddPipeline.cs" />
+    <Compile Include="AddPipelines\AddPrintToConsolePipeline.cs" />
+    <Compile Include="AddPipelines\AddRenameFields.cs" />
+    <Compile Include="AddPipelines\AddSafeUrlsPipeline.cs" />
+    <Compile Include="AddPipelines\AddYoutubeDetailPipeline.cs" />
+    <Compile Include="AngleDocument.cs" />
+    <Compile Include="CommonSetings.cs" />
+    <Compile Include="DownloaderSpider.cs" />
+    <Compile Include="Extensions\AngleSharpExtension.cs" />
+    <Compile Include="GlobalSettings.cs" />
+    <Compile Include="Helpers\Collection.cs" />
+    <Compile Include="Helpers\Extractors.cs" />
+    <Compile Include="Helpers\Html.cs" />
+    <Compile Include="Helpers\Json.cs" />
+    <Compile Include="Helpers\Numeric.cs" />
+    <Compile Include="Helpers\RegexHelper.cs" />
+    <Compile Include="Helpers\RegexLibrary.cs" />
+    <Compile Include="Helpers\Url.cs" />
+    <Compile Include="ISpiderEngine.cs" />
+    <Compile Include="Nodes.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="RunPipelines\RunCleanUrlBookmarkPipeline.cs" />
+    <Compile Include="RunPipelines\RunCleanUrlQueryStringPipeline.cs" />
+    <Compile Include="RunPipelines\RunDasherizePipeline.cs" />
+    <Compile Include="RunPipelines\RunEmbedMetadataPipeline.cs" />
+    <Compile Include="RunPipelines\RunHtmlDecodePipeline.cs" />
+    <Compile Include="RunPipelines\RunPrintToConsolePipeline.cs" />
+    <Compile Include="RunPipelines\RunRenameFieldsPipeline.cs" />
+    <Compile Include="RunPipelines\RunSafeUrlsPipeline.cs" />
+    <Compile Include="RunPipelines\RunSetUrlQueryStringPipeline.cs" />
+    <Compile Include="RunPipelines\RunTrimStringPipeline.cs" />
+    <Compile Include="RunPipelines\RunYoutubeDetailPipeline.cs" />
+    <Compile Include="Scrapper.cs" />
+    <Compile Include="SpiderContext.cs" />
+    <Compile Include="SpiderEngine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EnsureThatCore">
+      <Version>1.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="HtmlAgilityPack">
+      <Version>1.11.12</Version>
+    </PackageReference>
+    <PackageReference Include="HtmlAgilityPack.CssSelectors.NetCore">
+      <Version>1.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="HttpRequester">
+      <Version>1.0.22</Version>
+    </PackageReference>
+    <PackageReference Include="Humanizer">
+      <Version>2.7.2</Version>
+    </PackageReference>
+    <PackageReference Include="Polly">
+      <Version>7.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="PuppeteerSharp">
+      <Version>1.20.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog">
+      <Version>2.8.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Exceptions">
+      <Version>5.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.File">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Slugify.Core">
+      <Version>2.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.PerformanceCounter">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Tasks.Extensions">
+      <Version>4.5.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
+    <PackageReference Include="YoutubeExplode">
+      <Version>4.7.10</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <Folder Include="Resources\drawable\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

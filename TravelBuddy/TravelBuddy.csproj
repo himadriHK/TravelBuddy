@@ -104,11 +104,11 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>9.0.1</Version>
+    <PackageReference Include="System.Diagnostics.PerformanceCounter">
+      <Version>4.5.0</Version>
     </PackageReference>
-    <PackageReference Include="Portable.BouncyCastle">
-      <Version>1.8.5</Version>
+    <PackageReference Include="System.Threading.Tasks.Extensions">
+      <Version>4.0.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Compat">
       <Version>28.0.0.1</Version>
@@ -145,6 +145,10 @@
     <ProjectReference Include="..\GoogleAPILibrary\GoogleAPILibrary.csproj">
       <Project>{905eb077-63ee-49b0-9764-678d5f56e01c}</Project>
       <Name>GoogleAPILibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SpiderSharp\SpiderSharp.csproj">
+      <Project>{829d8894-b862-40a4-a293-8ecdf37b7598}</Project>
+      <Name>SpiderSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
