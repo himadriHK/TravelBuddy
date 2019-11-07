@@ -12,7 +12,6 @@ using Android.Support.V7.App;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
-using SpiderSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +28,6 @@ namespace TravelBuddy
 		MarkerOptions sourceMarkerOptions = new MarkerOptions();
 		MarkerOptions destinationMarkerOptions = new MarkerOptions();
 		InputMethodManager inputManager;
-		private Scrapper scrapper;
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -60,8 +58,8 @@ namespace TravelBuddy
 			location.getLocationByText("India");
 
 			inputManager = (InputMethodManager)GetSystemService(InputMethodService);
-			scrapper = new Scrapper();
-			scrapper.PrepareData();
+            if (!location.allSites.Any())
+                location.UpdateSitesData().Wait();
 		}
 
 		private async void AutoCompleteSource_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -108,19 +106,23 @@ namespace TravelBuddy
 			LatLng[] points = location.getPath(sourceMarkerOptions.Position, destinationMarkerOptions.Position, out bounds);
 			polylineOptions.Add(points);
 			googleMap.AddPolyline(polylineOptions);
-			LatLng[] pointsToMark = location.getNearbyLocations(points,
-				scrapper.locations.Select(x => new LatLng(x.Item1, x.Item2)).ToArray());
-			foreach (var latLng in pointsToMark)
-			{
-				MarkerOptions markerOption = new MarkerOptions();
-				markerOption.SetPosition(latLng);
-				googleMap.AddMarker(markerOption);
-			}
+
+            var filteredSites = location.allSites.Where(x => bounds.Contains(x.Item1));
+
 			
 			googleMap.AnimateCamera(CameraUpdateFactory.NewLatLngBounds(bounds, 60), 2000, null);
 
 
 			inputManager.HideSoftInputFromWindow(this.CurrentFocus.WindowToken, HideSoftInputFlags.None);
+
+            foreach(var site in filteredSites)
+            {
+                var markerOp = new MarkerOptions();
+                markerOp.SetPosition(site.Item1);
+                markerOp.SetTitle(site.Item2);
+                googleMap.AddMarker(markerOp);
+
+            }
 		}
 
 		private async void ShowMap()

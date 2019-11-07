@@ -11,9 +11,14 @@ using GoogleApi.Entities.Places.QueryAutoComplete.Request;
 using GoogleApi.Entities.Places.QueryAutoComplete.Response;
 using GoogleApi.Entities.Places.Search.Common.Enums;
 using Java.Lang;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Math = System.Math;
+using System.Net;
 
 namespace TravelBuddy
 {
@@ -21,7 +26,19 @@ namespace TravelBuddy
     {
 	    public  Location currentLocation;
         private Activity screenActivity;
-	    
+        public List<Tuple<LatLng, string>> allSites = new List<Tuple<LatLng, string>>();
+        public async Task<bool> UpdateSitesData()
+        {
+            WebClient client = new WebClient();
+            var sitesJson = client.DownloadString("http://10.0.2.2:8080/getAllSites/");
+            //string  = await response.Content.ReadAsStringAsync();
+            var allSites_temp = JsonConvert.DeserializeObject<List<Tuple<Tuple<double, double>, string>>>(sitesJson);
+            allSites = allSites_temp.Select(x => Tuple.Create(new LatLng(x.Item1.Item1, x.Item1.Item2), x.Item2)).ToList();
+            if (allSites.Any())
+                return true;
+            else
+                return false;
+        }
 
 		public  async Task StartLocationRequestAsync(Activity activity)
 		{

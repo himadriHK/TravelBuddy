@@ -1,17 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.489
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelBuddy", "TravelBuddy\TravelBuddy.csproj", "{141783FB-929E-495A-B6EF-49C05061623E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAPILibrary", "GoogleAPILibrary\GoogleAPILibrary.csproj", "{905EB077-63EE-49B0-9764-678D5F56E01C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScrappingTest", "ScrappingTest\ScrappingTest.csproj", "{384178DC-8A64-4158-BB4D-EB2716F10213}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpiderSharp__", "..\Downloads\SpiderSharp-master\src\SpiderSharp\SpiderSharp__.csproj", "{6DA612DF-968D-4AEC-B618-B9EF7E48EBB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpiderSharp", "SpiderSharpCore\SpiderSharp.csproj", "{03A62792-8CF4-4B05-9500-D8B4CBBC09DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpiderSharp", "SpiderSharp\SpiderSharp.csproj", "{829D8894-B862-40A4-A293-8ECDF37B7598}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAPI", "ClassLibrary1\GoogleAPI.csproj", "{ABE7589E-01CF-48AF-A171-DBF65AAFD7C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,22 +23,18 @@ Global
 		{141783FB-929E-495A-B6EF-49C05061623E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{141783FB-929E-495A-B6EF-49C05061623E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{141783FB-929E-495A-B6EF-49C05061623E}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{905EB077-63EE-49B0-9764-678D5F56E01C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{905EB077-63EE-49B0-9764-678D5F56E01C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{905EB077-63EE-49B0-9764-678D5F56E01C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{905EB077-63EE-49B0-9764-678D5F56E01C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{384178DC-8A64-4158-BB4D-EB2716F10213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{384178DC-8A64-4158-BB4D-EB2716F10213}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{384178DC-8A64-4158-BB4D-EB2716F10213}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{384178DC-8A64-4158-BB4D-EB2716F10213}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6DA612DF-968D-4AEC-B618-B9EF7E48EBB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DA612DF-968D-4AEC-B618-B9EF7E48EBB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DA612DF-968D-4AEC-B618-B9EF7E48EBB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DA612DF-968D-4AEC-B618-B9EF7E48EBB0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{829D8894-B862-40A4-A293-8ECDF37B7598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{829D8894-B862-40A4-A293-8ECDF37B7598}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{829D8894-B862-40A4-A293-8ECDF37B7598}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{829D8894-B862-40A4-A293-8ECDF37B7598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03A62792-8CF4-4B05-9500-D8B4CBBC09DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A62792-8CF4-4B05-9500-D8B4CBBC09DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A62792-8CF4-4B05-9500-D8B4CBBC09DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A62792-8CF4-4B05-9500-D8B4CBBC09DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABE7589E-01CF-48AF-A171-DBF65AAFD7C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABE7589E-01CF-48AF-A171-DBF65AAFD7C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABE7589E-01CF-48AF-A171-DBF65AAFD7C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABE7589E-01CF-48AF-A171-DBF65AAFD7C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
